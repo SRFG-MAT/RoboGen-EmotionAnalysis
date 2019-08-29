@@ -22,21 +22,14 @@ Unter dem oben genannten Datensatzpool kann der Pain Dataset by CMU (http://www.
 
 Sollte neben diesen Datensätzen noch weitere benötigt werden, ist hier eine Liste von potenziellen Erweiterungen:
 
-http://vis-www.cs.umass.edu/lfw/#download
-
-http://www.kasrl.org/jaffe.html
-
-http://cvit.iiit.ac.in/projects/IMFDB/
-
-http://www.cs.columbia.edu/CAVE/databases/pubfig/
-
-http://vision.ucsd.edu/~iskwak/ExtYaleDatabase/ExtYaleB.html
-
-http://grail.cs.washington.edu/projects/deepexpr/ferg-db.html
-
-http://app.visgraf.impa.br/database/faces/
-
-http://mohammadmahoor.com/affectnet/
+- http://vis-www.cs.umass.edu/lfw/#download
+- http://www.kasrl.org/jaffe.html
+- http://cvit.iiit.ac.in/projects/IMFDB/
+- http://www.cs.columbia.edu/CAVE/databases/pubfig/
+- http://vision.ucsd.edu/~iskwak/ExtYaleDatabase/ExtYaleB.html
+- http://grail.cs.washington.edu/projects/deepexpr/ferg-db.html
+- http://app.visgraf.impa.br/database/faces/
+- http://mohammadmahoor.com/affectnet/
 
 Jeder der oben genannten Datensätze braucht mehr oder weniger Zeit (2 Stunden bis zu 2 Tage), um gedownloaded zu werden. Es sollte somit mit ausreichend Zeit gerechnet werden!
 
