@@ -47,23 +47,28 @@ Von den vier Foldern ist eig. nur das "dataset" von Relevanz. Dieser Folder bein
 
 Die 8 Programme:
 
-EmotionDetection.py: Eine primitive Form der Emotionsanalyse mit der Hilfe von FischerFaceRecognizer. Der Vorteil hier ist der minimierte Aufwand, bis das Projekt starten kann. Es muss u.a. kein DLib installiert werden, dass je nach Betriebssystem länger dauern kann
-EmotionDetectionDlib.py: Dies ist die "aufgepimpte" Version von EmotionDetection.py, die mit DLib arbeitet. Die Implementierung wurde so gewählt, dass das Training des Models in einem separaten Programm passiert, um den Start der MEA zu beschleunigen.
-Experiments.py: Hierbei handelt es sich um ein Programm das lediglich als Hilfe zur Implementierung von EmotionDetectionDlib.py verwendet worden ist. 
-ExtractingFaces.py: Eines jener Programme das für die Vorbereitung des CK+ Datensatzes verwendet worden ist. (wird als letztes ausgeführt)
-FaceDetectionWebCam.py: Dieses Programm kann für das Verständnis des EmotionDetectionDlib.py-Programms verwendet werden. Es zeigt in der WebCam an, wie die 68 Features generiert werden.
-OrganisingDataset.py: Das erste Programm für die Vorbereitung des CK+ Datensatzes. Extrahiert die Bilder aus source_images und die Textinformationen aus source_emotion.
-SeeExtractedTrainingParameters.py: Ein weiteres Programm, dass für das weitere Verständnis von EmotionDetectionDlib.py entwickelt worden ist. Dient zum Verständnis welche Daten und deren Form in das Model eingespeißt werden.
-TrainAndSaveModel.py: Dieses Programm ladet alle Trainingsdaten und Trainiert anschließend das Model (Support Vector Machine - SVM). Der Prozess kann etwas Zeit in Anspruch nehmen (abhängig von der Hardware)
+- EmotionDetection.py: Eine primitive Form der Emotionsanalyse mit der Hilfe von FischerFaceRecognizer. Der Vorteil hier ist der minimierte Aufwand, bis das Projekt starten kann. Es muss u.a. kein DLib installiert werden, dass je nach Betriebssystem länger dauern kann
+
+- EmotionDetectionDlib.py: Dies ist die "aufgepimpte" Version von EmotionDetection.py, die mit DLib arbeitet. Die Implementierung wurde so gewählt, dass das Training des Models in einem separaten Programm passiert, um den Start der MEA zu beschleunigen.
+
+- Experiments.py: Hierbei handelt es sich um ein Programm das lediglich als Hilfe zur Implementierung von EmotionDetectionDlib.py verwendet worden ist. 
+
+- ExtractingFaces.py: Eines jener Programme das für die Vorbereitung des CK+ Datensatzes verwendet worden ist. (wird als letztes ausgeführt)
+
+- FaceDetectionWebCam.py: Dieses Programm kann für das Verständnis des EmotionDetectionDlib.py-Programms verwendet werden. Es zeigt in der WebCam an, wie die 68 Features generiert werden.
+
+- OrganisingDataset.py: Das erste Programm für die Vorbereitung des CK+ Datensatzes. Extrahiert die Bilder aus source_images und die Textinformationen aus source_emotion.
+
+- SeeExtractedTrainingParameters.py: Ein weiteres Programm, dass für das weitere Verständnis von EmotionDetectionDlib.py entwickelt worden ist. Dient zum Verständnis welche Daten und deren Form in das Model eingespeißt werden.
+
+- TrainAndSaveModel.py: Dieses Programm ladet alle Trainingsdaten und Trainiert anschließend das Model (Support Vector Machine - SVM). Der Prozess kann etwas Zeit in Anspruch nehmen (abhängig von der Hardware)
 Die zwei SAV-Files sind bereits trainierte Modelle. EDModel.sav stellt jenes Model dar, dass nur ausgewählte Emotionen beinhaltet (Fear, Happiness, Pain, Neutral, Sadness und Surprise). Wiederum das zweite SAV-File (EmotionPredictionModel_All.sav) wurde mit der Hilfe von allen Emotionen trainiert.
 
 Die 4 XML-Files sind einerseits notwendig um die CK+ Daten vorzubereiten, sowie auch um bei den zwei Programmen (EmotionDetection + DLib) die Gesichter der Webcam zu erkennen. Es wird prinzipell nur das "alt" verwendet. Es können jedoch auch die anderen drei verwendet werden. Der Unterschied sollte sich, wenn überhaupt, in Grenzen halten.
-
 Das Dat-File (shape_predictor_68_face_landmarks.dat) dient für die Generierung der 68-Features, die für das Dlib-Programm notwendig sind.
 
 TrainAndSaveModels.py
 Wie bereits oben kurz beschrieben, trainiert dieses Programm das Model für das Programm EmotionDetectionDlib.py. Das Programm kann prinzipiell so beschrieben werden, dass es alle Bilder aus dem generierten Datensatz entnimmt und aus jedem Bild einen 4x68 Vektor generiert. Die vier Spalten spiegeln die x- und y-Koordinate wieder, sowie die Normalisierte Distanz zum Mittelpunkt des Gesichts (sehr häufig die Nase) wie auch den Winkel von x und y. Nachdem die Features für jedes Bild berechnet wurden, werden diese in die SVM von Sklearn eingespeißt. Die Funktion make_sets dient nur dazu die Daten zu laden (data und labels). Im letzten Schritt wird das trainierte Model via der Bibliothek Joblib gespeichert.
-
 Die Featurewahl sowie auch die SVM wurden vom Tutorial übernommen. Dieses beschreibt relativ verständlich warum diese Faktoren gewählt worden sind.
 
 EmotionDetectionDlib.py
@@ -82,12 +87,18 @@ Das Projekt beinhaltet 6 Programme und 8 MP3-Files.
 
 Die 6 Programme bestehen aus
 
-Emotion_Dictionary.py: Dieses Dictionary ist eine kondensierte Version des Emotion_Dictionary_Various_Emotions.py
-Emotion_Dictionary_Various_Emotions.py: Hierbei handelt es sich um ein Wörterbuch, dass Eckmans 6 Hauptemotionen, aufgeteilt mit Plutchiks Rad der Emotionen, beinhaltet.
-Main_Programm.py: Dies ist das Hauptprogramm.
-Processing_Audio.py: Der Sprachbefehl wird in diesem Programm in Text via Google Cloud Speech API transformiert.
-Speech_Experiment.py: Aus Programm zum experimentieren, wenn gewollt
-Various_Functions.py: Hierbei handelt es sich um eine Summation von verschiedenen Funktionen, die verwendet werden. U.a. Preprocessing, etc.
+- Emotion_Dictionary.py: Dieses Dictionary ist eine kondensierte Version des Emotion_Dictionary_Various_Emotions.py
+
+- Emotion_Dictionary_Various_Emotions.py: Hierbei handelt es sich um ein Wörterbuch, dass Eckmans 6 Hauptemotionen, aufgeteilt mit Plutchiks Rad der Emotionen, beinhaltet.
+
+- Main_Programm.py: Dies ist das Hauptprogramm.
+
+- Processing_Audio.py: Der Sprachbefehl wird in diesem Programm in Text via Google Cloud Speech API transformiert.
+
+- Speech_Experiment.py: Aus Programm zum experimentieren, wenn gewollt
+
+- Various_Functions.py: Hierbei handelt es sich um eine Summation von verschiedenen Funktionen, die verwendet werden. U.a. Preprocessing, etc.
+
 8 MP3-Files dienen lediglich der Audiowiedergabe für eine spezielle Emotion.
 
 Programmverlauf
