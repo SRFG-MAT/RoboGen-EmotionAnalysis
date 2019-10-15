@@ -13,25 +13,27 @@ detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat") #Or set this to whatever you named the downloaded file
 clf = SVC(kernel='linear', probability=True, tol=1e-3)#, verbose = True) #Set the classifier as a support vector machines with polynomial kernel
 data = {} #Make dictionary for all values
-vs = cv2.VideoCapture(0)
+vs = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+vs.set(3,1280)
+vs.set(4,720)
 clf = joblib.load("EmotionPredictionmodel_All.sav")
 list_of_current_emotions = []
 
 def decodeEmotion(pred):
     if pred == 0:
-        return "fear"
+        return "Angst"
     elif pred == 1:
-        return "happy"
+        return "Freude"
     elif pred == 2:
-        return "neutral"
+        return "Neutral"
     elif pred == 3:
-        return "pain"
+        return "Schmerz"
     elif pred == 4:
-        return "sadness"
+        return "Trauer"
     elif pred == 5:
-        return "surprise"
+        return "Ueberraschung"
     else:
-        return "oh well, something went wrong..."
+        return "ERROR"
 
 def get_landmarks_for_classification(image):
     detections = detector(image, 1)
@@ -91,11 +93,13 @@ while True:
 
         emotion = decodeEmotion(int_emotion)
 
-        cv2.putText(frame, emotion, (x, y), cv2.FONT_HERSHEY_COMPLEX, 1.0, (255, 255, 255),
-                    lineType=cv2.LINE_AA)
+        cv2.putText(frame, emotion, (x, y-20), cv2.FONT_HERSHEY_COMPLEX, 1.5, (0, 0, 255), 2, cv2.LINE_AA)
 
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 3)
 
+    cv2.namedWindow("Video",cv2.WINDOW_KEEPRATIO)
+    cv2.setWindowProperty("Video",cv2.WND_PROP_ASPECT_RATIO,cv2.WINDOW_KEEPRATIO)
+    cv2.setWindowProperty("Video",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
     cv2.imshow("Video", frame)
     key = cv2.waitKey(1) & 0xFF
 
